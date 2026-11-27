@@ -3,7 +3,6 @@ package com.example.smstrigger;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.text.TextUtils;
 
@@ -22,7 +21,7 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent == null || intent.getAction() == null) return;
         String action = intent.getAction();
-        if (!Telephony.Sms.RECEIVED.equals(action) && !LEGACY_ACTION.equals(action)) return;
+        if (!LEGACY_ACTION.equals(action)) return;
         if (!Prefs.getBoolean(context, Prefs.KEY_ENABLED, false)) return;
 
         Object[] pdus = null;
